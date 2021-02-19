@@ -37,38 +37,48 @@ public class Controller {
 			this.proxy = proxy;
 		}
 
+		//Constructor
 		public Controller(JavaClientGUI client) {
 			this.client = client;
 			proxy = new WebService1SoapProxy();
+			this.initialize();
 		}
 		
+		public void initialize() {
+			client.getBtnSearch().addActionListener(this.onSearchAction());
+		}
+
 		public void updateOfficeTable(JTable table) throws RemoteException {
 			Office[] offices = proxy.showOffices();
+			
+			//Cast the office array from the proxy class into a List which is compatible with the table model class.
 		    List<Office> officeList = Arrays.asList(offices);          
 			OfficeTableModel dataModel = new OfficeTableModel(officeList);
 			table.setModel(dataModel);
 		}
 		public void updateBuildingTable(JTable table) throws RemoteException {
 			Building[] buildings = proxy.showBuildings();
+			
+			//Cast the office array from the proxy class into a List which is compatible with the table model class.
 		    List<Building> buildingList = Arrays.asList(buildings);          
 			BuildingTableModel dataModel = new BuildingTableModel(buildingList);
 			table.setModel(dataModel);
 		}
 		
-		public ActionListener showOffices(JRadioButton rdbtnOffices, JRadioButton rdbtnBuildings, JTable tableOffices, JLabel lblFeedback) {
+		public ActionListener onSearchAction() {
 			return new ActionListener() {
 				public void actionPerformed(ActionEvent arg){
-					lblFeedback.setText("Executing");
+					client.getLblFeedback().setText("");
 					try {
-						if(rdbtnOffices.isSelected()) {
-							updateOfficeTable(tableOffices);
-							lblFeedback.setText("Updated offices.");
+						if(client.getRdbtnOffices().isSelected()) {
+							updateOfficeTable(client.getTableOffices());
+							client.getLblFeedback().setText("Updated offices.");
 						} else {
-							updateBuildingTable(tableOffices);
-							lblFeedback.setText("Updated buildings.");
+							updateBuildingTable(client.getTableOffices());
+							client.getLblFeedback().setText("Updated buildings.");
 						}
 					} catch (RemoteException e1) {
-						lblFeedback.setText("Error");
+						client.getLblFeedback().setText("Error");
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}

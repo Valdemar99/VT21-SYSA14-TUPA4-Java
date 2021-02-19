@@ -10,8 +10,9 @@ public class Application {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JavaClientGUI frame = new JavaClientGUI();
-					frame.setVisible(true);
+					JavaClientGUI client = new JavaClientGUI();
+					Controller controller = new Controller(client);
+					client.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
