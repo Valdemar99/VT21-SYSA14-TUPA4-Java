@@ -19,7 +19,7 @@ import tableModels.OfficeTableModel;
 public class Controller {
 	//Instance variables
 		private JavaClientGUI client;
-		private WebService1SoapProxy proxy;
+		private WebService1Soap proxy;
 		
 		public JavaClientGUI getClient() {
 			return client;
@@ -29,11 +29,11 @@ public class Controller {
 			this.client = client;
 		}
 
-		public WebService1SoapProxy getProxy() {
+		public WebService1Soap getProxy() {
 			return proxy;
 		}
 
-		public void setProxy(WebService1SoapProxy proxy) {
+		public void setProxy(WebService1Soap proxy) {
 			this.proxy = proxy;
 		}
 
@@ -78,9 +78,12 @@ public class Controller {
 							client.getLblFeedback().setText("Updated buildings.");
 						}
 					} catch (RemoteException e1) {
-						client.getLblFeedback().setText("Error");
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						String fullMessage = e1.getMessage();
+						String partOfMessage = fullMessage.split(":")[1];
+						int indexToTruncateAt = partOfMessage.indexOf('.');
+						String message = partOfMessage.substring(0, indexToTruncateAt);
+						
+						client.getLblFeedback().setText(message);
 					}
 				}
 			};

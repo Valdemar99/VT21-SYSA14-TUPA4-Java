@@ -64,25 +64,25 @@ public class JavaClientGUI extends JFrame {
 		
 		rdbtnOffices = new JRadioButton("Offices");
 		buttonGroup.add(rdbtnOffices);
-		rdbtnOffices.setBounds(6, 75, 109, 23);
+		rdbtnOffices.setBounds(6, 37, 109, 23);
 		contentPane_1.add(rdbtnOffices);
 		
 		rdbtnBuildings = new JRadioButton("Buildings");
 		buttonGroup.add(rdbtnBuildings);
-		rdbtnBuildings.setBounds(6, 49, 109, 23);
+		rdbtnBuildings.setBounds(6, 11, 109, 23);
 		contentPane_1.add(rdbtnBuildings);
 		
 		btnSearch = new JButton("Search");
 		
-		btnSearch.setBounds(10, 105, 89, 23);
+		btnSearch.setBounds(10, 67, 89, 23);
 		contentPane_1.add(btnSearch);
 		
 		lblFeedback = new JLabel("");
-		lblFeedback.setBounds(10, 345, 213, 14);
+		lblFeedback.setBounds(10, 345, 707, 14);
 		contentPane_1.add(lblFeedback);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(202, 49, 515, 310);
+		scrollPane.setBounds(202, 11, 515, 310);
 		contentPane_1.add(scrollPane);
 		
 		tableOffices = new JTable();
