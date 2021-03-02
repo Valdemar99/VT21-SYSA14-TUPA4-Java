@@ -59,7 +59,7 @@ public class Controller {
 		public void updateBuildingTable(JTable table) throws RemoteException {
 			Building[] buildings = proxy.showBuildings();
 			
-			//Cast the office array from the proxy class into a List which is compatible with the table model class.
+			//Cast the building array from the proxy class into a List which is compatible with the table model class.
 		    List<Building> buildingList = Arrays.asList(buildings);          
 			BuildingTableModel dataModel = new BuildingTableModel(buildingList);
 			table.setModel(dataModel);
